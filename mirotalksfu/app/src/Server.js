@@ -653,18 +653,21 @@ function startServer() {
     app.set('trust proxy', trustProxy); // Enables trust for proxy headers (e.g., X-Forwarded-For) based on the trustProxy setting
     app.use(helmet.noSniff()); // Enable content type sniffing prevention
     app.use(applyEmbedHeaders); // Apply iframe embedding restrictions (CSP frame-ancestors / X-Frame-Options)
+    app.use(compression()); // MUST be before express.static so JS/CSS get gzipped
     // Use all static files from the public folder
     app.use(
         express.static(dir.public, {
+            maxAge: '7d',
             setHeaders: (res, filePath) => {
                 if (filePath.endsWith('.js')) {
                     res.setHeader('Content-Type', 'application/javascript');
-                } //...
+                }
+                // 长缓存 + immutable：电视二次启动直接读本地缓存，秒开
+                res.setHeader('Cache-Control', 'public, max-age=604800, immutable');
             },
         })
     );
     app.use(cors(corsOptions));
-    app.use(compression());
     app.use(express.json({ limit: '50mb' })); // Handles JSON payloads
     app.use(express.urlencoded({ extended: true, limit: '50mb' })); // Handles URL-encoded payloads
     app.use(express.raw({ type: 'video/webm', limit: '50mb' })); // Handles raw binary data
