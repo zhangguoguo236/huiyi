@@ -1,0 +1,8 @@
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+    <style name="Theme.MirotalkTV" parent="android:Theme.Material.NoActionBar">
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:colorPrimary">#16335c</item>
+        <item name="android:colorBackground">#0d1b2a</item>
+        <item name="android:statusBarColor">#16335c</item>
+    </style>
+</resources>

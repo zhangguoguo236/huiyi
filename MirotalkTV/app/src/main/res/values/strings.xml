@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">西林电气会议</string>
+    <!-- 电视 APP 加载的会议服务器地址；部署后在此修改即可 -->
+    <string name="server_url">https://xm.sinovo.cn:1686</string>
+</resources>

@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en" class="no-js">
+    <head>
+        <!-- Title and Icon -->
+
+        <title id="title">西林电气会议</title>
+        <link id="icon" rel="shortcut icon" href="../images/logo.svg" />
+        <link id="appleTouchIcon" rel="apple-touch-icon" href="../images/logo.svg" />
+
+        <!-- Meta Information -->
+
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <meta
+            id="description"
+            name="description"
+            content="Build your own Zoom alternative with MiroTalk SFU, an open-source, self-hosted WebRTC platform powered by Mediasoup for scalable video meetings."
+        />
+        <!-- https://ogp.me -->
+
+        <meta property="og:type" content="{{OG_TYPE}}" />
+        <meta property="og:site_name" content="{{OG_SITE_NAME}}" />
+        <meta property="og:title" content="{{OG_TITLE}}" />
+        <meta property="og:description" content="{{OG_DESCRIPTION}}" />
+        <meta property="og:image" content="{{OG_IMAGE}}" />
+        <meta property="og:url" content="{{OG_URL}}" />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="{{OG_TITLE}}" />
+        <meta name="twitter:description" content="{{OG_DESCRIPTION}}" />
+        <meta name="twitter:image" content="{{OG_IMAGE}}" />
+
+        <!-- StyleSheet -->
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,600" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
+        <link rel="stylesheet" type="text/css" href="../css/landing.css" />
+
+        <!-- Snow effects -->
+
+        <link rel="stylesheet" href="../css/Snow.css" />
+        <script async src="../js/Snow.js"></script>
+
+        <!-- Js scripts -->
+        <script defer src="../js/Widget.js"></script>
+        <script defer src="../js/Brand.js"></script>
+        <script async src="../js/Stats.js"></script>
+
+        <script defer src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.8"></script>
+        <script src="https://unpkg.com/animejs@3.0.1/lib/anime.min.js"></script>
+        <script src="https://unpkg.com/scrollreveal@4.0.0/dist/scrollreveal.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/xss/dist/xss.min.js"></script>
+    </head>
+    <body class="is-boxed has-animations">
+        <div id="snow-container"></div>
+        <div class="body-wrap">
+
+            <main style="min-height: 100vh; min-height: 100dvh; display: flex; align-items: center; justify-content: center; padding: 16px;">
+
+                <section class="cta section">
+                    <div class="container">
+                        <div class="cta-inner section-inner br-12">
+                            <h3 id="joinDescription" class="section-title mt-0">
+                                Pick a room name.<br />
+                                How about this one?
+                            </h3>
+                            <div>
+                                <div class="mb-24">
+                                    <label for="roomName"></label>
+                                    <div class="form-group-desktop">
+                                        <div class="room-input-wrapper">
+                                            <input
+                                                id="roomName"
+                                                class="form-input"
+                                                type="text"
+                                                maxlength="32"
+                                                value=""
+                                            />
+                                            <button
+                                                id="genRoomButton"
+                                                class="button button-primary br-6 fas fa-arrows-rotate gen-room-btn"
+                                            ></button>
+                                        </div>
+                                        <button id="joinRoomButton" class="button button-primary pulse">
+                                            Join Room
+                                        </button>
+                                    </div>
+                                    <div class="mt-16">
+                                        <button
+                                            id="customizeRoomButton"
+                                            class="button button-secondary button-block br-6"
+                                        >
+                                            自定义房间
+                                        </button>
+                                    </div>
+                                    <div class="mt-8">
+                                        <button
+                                            id="scheduleMeetingBtn"
+                                            class="schedule-meeting-btn"
+                                            type="button"
+                                            hidden
+                                        >
+                                            <i class="fas fa-calendar-check"></i> 安排会议
+                                        </button>
+                                    </div>
+                                </div>
+                                <div id="lastRoomContainer" class="last-room">
+                                    <span id="joinLastLabel">你最近的房间：</span>
+                                    <a id="lastRoom"></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+
+
+
+
+
+
+
+
+            </main>
+
+        </div>
+
+        <script defer src="../js/Utils.js"></script>
+        <script defer src="../js/Common.js"></script>
+        <script defer src="../js/Landing.js"></script>
+        <script defer src="../js/ScheduleMeeting.js"></script>
+        <script async defer src="https://buttons.github.io/buttons.js"></script>
+    </body>
+</html>

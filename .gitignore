@@ -1,0 +1,21 @@
+# 密钥/证书：绝不入库
+*.pem
+*.key
+*.crt
+*.pfx
+ssl/
+security/
+# 依赖/构建产物
+node_modules/
+.gradle/
+build/
+.idea/
+# 本地环境配置（含密钥），用 .env.template 代替
+.env
+# 媒体/录屏大目录
+data/
+rec/
+rtmp/
+.cache/
+rnnoiseBuild/
+custom/

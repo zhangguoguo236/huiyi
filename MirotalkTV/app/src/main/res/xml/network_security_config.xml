@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+    <!-- 允许电视端加载该域名（含自签证书 / 混合内容），便于内网或反代环境直接开会 -->
+    <domain-config cleartextTrafficPermitted="true">
+        <domain includeSubdomains="true">xm.sinovo.cn</domain>
+        <trust-anchors>
+            <certificates src="system" />
+            <certificates src="user" />
+        </trust-anchors>
+    </domain-config>
+    <base-config cleartextTrafficPermitted="false">
+        <trust-anchors>
+            <certificates src="system" />
+        </trust-anchors>
+    </base-config>
+</network-security-config>
