@@ -10,6 +10,17 @@ WORKDIR /src
 ENV NODE_ENV=production
 ENV MEDIASOUP_SKIP_WORKER_PREBUILT_DOWNLOAD=true
 
+# ---- 国内镜像加速 ----
+# npm 源（淘宝）
+ENV npm_config_registry=https://registry.npmmirror.com
+# pip 源（清华）。mediasoup worker 编译依赖 pip 安装 meson/ninja，必须加速
+ENV PIP_INDEX_URL=https://pypi.tuna.tsinghua.edu.cn/simple
+ENV PIP_TRUSTED_HOST=pypi.tuna.tsinghua.edu.cn
+
+# 换 apt 源为清华镜像（debian bookworm）
+RUN sed -i 's|http://deb.debian.org|https://mirrors.tuna.tsinghua.edu.cn|g' /etc/apt/sources.list && \
+    sed -i 's|http://security.debian.org|https://mirrors.tuna.tsinghua.edu.cn/debian-security|g' /etc/apt/sources.list
+
 # Install system dependencies
 RUN apt-get update && apt-get install -y --no-install-recommends \
     python3 \
