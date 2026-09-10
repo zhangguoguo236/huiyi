@@ -284,10 +284,16 @@ const slackSigningSecret = config?.integrations?.slack?.signingSecret || '';
 
 const app = express();
 
-const options = {
-    cert: fs.readFileSync(path.join(__dirname, config?.server?.ssl.cert || '../ssl/cert.pem'), 'utf-8'),
-    key: fs.readFileSync(path.join(__dirname, config?.server?.ssl.key || '../ssl/key.pem'), 'utf-8'),
-};
+const sslCertPath = path.join(__dirname, config?.server?.ssl.cert || '../ssl/cert.pem');
+const sslKeyPath = path.join(__dirname, config?.server?.ssl.key || '../ssl/key.pem');
+const options = {};
+// httpolyglot 在缺少证书时降级为纯 HTTP；证书缺失不再致命，避免容器 restart loop
+if (fs.existsSync(sslCertPath) && fs.existsSync(sslKeyPath)) {
+    options.cert = fs.readFileSync(sslCertPath, 'utf-8');
+    options.key = fs.readFileSync(sslKeyPath, 'utf-8');
+} else {
+    console.warn('[ssl] cert/key not found, starting in plain HTTP mode:', sslCertPath);
+}
 
 const corsOptions = {
     origin: config.server?.cors?.origin || '*',
