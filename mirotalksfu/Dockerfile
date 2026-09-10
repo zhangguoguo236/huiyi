@@ -17,9 +17,16 @@ ENV npm_config_registry=https://registry.npmmirror.com
 ENV PIP_INDEX_URL=https://pypi.tuna.tsinghua.edu.cn/simple
 ENV PIP_TRUSTED_HOST=pypi.tuna.tsinghua.edu.cn
 
-# 换 apt 源为清华镜像（debian bookworm）
-RUN sed -i 's|http://deb.debian.org|https://mirrors.tuna.tsinghua.edu.cn|g' /etc/apt/sources.list && \
-    sed -i 's|http://security.debian.org|https://mirrors.tuna.tsinghua.edu.cn/debian-security|g' /etc/apt/sources.list
+# 换 apt 源为清华镜像（兼容 deb822 与传统两种格式）
+# node:24-slim 用 /etc/apt/sources.list.d/debian.sources (deb822)，无传统 sources.list
+RUN set -e; \
+    if [ -f /etc/apt/sources.list.d/debian.sources ]; then \
+      sed -i 's|deb.debian.org|mirrors.tuna.tsinghua.edu.cn|g; s|security.debian.org/debian-security|mirrors.tuna.tsinghua.edu.cn/debian-security|g' /etc/apt/sources.list.d/debian.sources; \
+    elif [ -f /etc/apt/sources.list ]; then \
+      sed -i 's|deb.debian.org|mirrors.tuna.tsinghua.edu.cn|g; s|security.debian.org/debian-security|mirrors.tuna.tsinghua.edu.cn/debian-security|g' /etc/apt/sources.list; \
+    else \
+      printf 'deb http://mirrors.tuna.tsinghua.edu.cn/debian bookworm main\ndeb http://mirrors.tuna.tsinghua.edu.cn/debian-security bookworm-security main\n' > /etc/apt/sources.list; \
+    fi
 
 # Install system dependencies
 RUN apt-get update && apt-get install -y --no-install-recommends \
