@@ -72,7 +72,7 @@ let BRAND = {
     },
     login: {
         heading: '欢迎回来',
-        description: '输入凭据以继续。',
+        description: '请输入账号密码继续。',
         buttonLabel: '登录',
     },
     about: {

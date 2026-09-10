@@ -21,7 +21,7 @@ if (togglePasswordBtn) {
         const isPassword = passwordInput.type === 'password';
         passwordInput.type = isPassword ? 'text' : 'password';
         togglePasswordBtn.querySelector('i').className = isPassword ? 'fa-solid fa-eye-slash' : 'fa-solid fa-eye';
-        const label = isPassword ? 'Hide password' : 'Show password';
+        const label = isPassword ? '隐藏密码' : '显示密码';
         togglePasswordBtn.title = label;
         togglePasswordBtn.setAttribute('aria-label', label);
         togglePasswordBtn.setAttribute('aria-pressed', isPassword ? 'true' : 'false');
@@ -93,8 +93,8 @@ if (shareRoomBtn) {
         } else {
             navigator.clipboard
                 .writeText(roomUrl)
-                .then(() => popup('success', 'Room link copied to clipboard!'))
-                .catch(() => popup('warning', 'Failed to copy link'));
+                .then(() => popup('success', '房间链接已复制'))
+                .catch(() => popup('warning', '复制链接失败'));
         }
     };
 }
@@ -180,7 +180,7 @@ function login() {
                     const input = document.createElement('input');
                     input.type = 'text';
                     input.id = 'customRoomInput';
-                    input.placeholder = 'Enter room name';
+                    input.placeholder = '输入房间名';
                     input.className = 'form-input';
                     input.maxLength = 32;
                     selectRoom.parentNode.insertBefore(input, selectRoom);

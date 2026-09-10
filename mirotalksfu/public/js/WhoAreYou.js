@@ -32,13 +32,13 @@ if (roomId && roomId !== 'whoAreYou') {
 function updateElapsedTime() {
     const seconds = Math.floor((Date.now() - waitStartTime) / 1000);
     if (seconds < 60) {
-        waitingElapsedText.textContent = getWaitingRoomBrand('waitingRoomElapsedJust', 'Just started waiting');
+        waitingElapsedText.textContent = getWaitingRoomBrand('waitingRoomElapsedJust', '刚刚开始等待');
     } else {
         const minutes = Math.floor(seconds / 60);
-        const template = getWaitingRoomBrand('waitingRoomElapsedMinutes', 'Waiting for {minutes}');
+        const template = getWaitingRoomBrand('waitingRoomElapsedMinutes', '已等待 {minutes}');
         waitingElapsedText.textContent = template.replace(
             '{minutes}',
-            minutes + (minutes === 1 ? ' minute' : ' minutes')
+            minutes + ' 分钟'
         );
     }
 }
@@ -88,7 +88,7 @@ function checkRoom() {
                     waitingAudio = null;
                 }
                 playSound('roomActive');
-                statusEl.textContent = getWaitingRoomBrand('waitingRoomReady', 'Room is ready! Joining...');
+                statusEl.textContent = getWaitingRoomBrand('waitingRoomReady', '房间已就绪，正在加入...');
                 statusEl.classList.add('ready');
                 setTimeout(function () {
                     window.location.href = '/join/' + encodeURIComponent(roomId);
@@ -96,7 +96,7 @@ function checkRoom() {
             } else if (!isActive) {
                 statusEl.textContent = getWaitingRoomBrand(
                     'waitingRoomWaiting',
-                    'Waiting for host to start the meeting...'
+                    '等待主持人开始会议...'
                 );
                 scheduleNextCheck();
             }
