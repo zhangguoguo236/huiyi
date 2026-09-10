@@ -2,9 +2,9 @@
 .center-card-section {
     display: flex;
     align-items: center;
-    min-height: calc(100vh - 200px);
-    padding-top: 0 !important;
-    padding-bottom: 0 !important;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 0 !important;
 }
 .center-card-section .container {
     width: 100%;
