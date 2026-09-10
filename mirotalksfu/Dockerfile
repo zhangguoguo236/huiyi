@@ -19,9 +19,14 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 
 # Install dependencies (cache npm)
+# NOTE: package.json has a postinstall script that runs `npm run build:mediasoup-client`,
+# which requires `esbuild`. `esbuild` is listed under devDependencies, so `--omit=dev`
+# causes the postinstall step to hang/fail when npx tries to download esbuild on the fly.
+# Fix: install with devDependencies so the bundle can be built, then prune them away.
 COPY package*.json ./
 RUN --mount=type=cache,target=/root/.npm \
-    npm ci --omit=dev
+    npm ci --include=dev && \
+    npm prune --omit=dev
 
 # Avoid recursive chown, which duplicates /src into a costly overlayfs layer.
 # Dependencies remain root-owned and readable; application files are owned by node.
