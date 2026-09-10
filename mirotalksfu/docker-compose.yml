@@ -19,6 +19,9 @@ services:
         volumes:
             - ./app/src/config.js:/src/app/src/config.js:ro
             - ./.env:/src/.env:ro
+            # ⚠️ SSL 证书必须存在，否则 Server.js:288 启动即崩溃 → 容器 restart loop。
+            # 宿主机请把 cert.pem / key.pem 放到 ./app/ssl/ 再启动。
+            - ./app/ssl:/src/app/ssl:ro
             # Mandatory volume if `RECORDING_ENABLED=true` in the .env
             # - ./app/rec:/src/app/rec
             # Mandatory volume if `RTMP_FROM_FILE=true` in the .env
