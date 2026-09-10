@@ -1,5 +1,8 @@
 'use strict';
 
+// 电视 APP 内置前端：登录/跳转一律走绝对服务器地址，避免 file:// 源下相对路径失效
+const SERVER_BASE = 'https://xm.sinovo.cn:1686';
+
 console.log(window.location);
 
 const usernameInput = document.getElementById('username');
@@ -87,7 +90,7 @@ if (shareRoomBtn) {
             if (inputEl) highlightEmpty(inputEl);
             return;
         }
-        const roomUrl = window.location.origin + '/join/?room=' + roomName;
+        const roomUrl = SERVER_BASE + '/join/?room=' + roomName;
         if (navigator.share) {
             navigator.share({ title: 'Join my room', url: roomUrl }).catch(() => {});
         } else {

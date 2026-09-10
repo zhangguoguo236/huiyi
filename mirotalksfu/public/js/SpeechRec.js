@@ -741,7 +741,6 @@ const browser = {
     newroom: '/newroom',
     email: 'mailto:?subject=&body=',
     google: 'https://www.google.com',
-    googleTr: 'https://translate.google.com/',
     youtube: 'https://www.youtube.com',
     facebook: 'https://www.facebook.com',
     linkedin: 'https://www.linkedin.com',

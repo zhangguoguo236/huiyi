@@ -52,8 +52,11 @@ public class MainActivity extends Activity {
         ws.setJavaScriptEnabled(true);                       // 会议 UI 必需
         ws.setDomStorageEnabled(true);                      // MiroTalk 依赖 localStorage
         ws.setMediaPlaybackRequiresUserGesture(false);       // 允许自动播放会议媒体
-        ws.setAllowFileAccess(false);
+        ws.setAllowFileAccess(true);
         ws.setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);
+        // 内置前端：放行 file:// 页面的跨源请求（登录/跳转走 https 服务器）
+        ws.setAllowFileAccessFromFileURLs(true);
+        ws.setAllowUniversalAccessFromFileURLs(true);
         ws.setBuiltInZoomControls(false);
         ws.setDisplayZoomControls(false);
         ws.setSupportZoom(false);
@@ -74,8 +77,8 @@ public class MainActivity extends Activity {
 
         setContentView(webView);
 
-        // 加载会议服务器
-        webView.loadUrl(getString(R.string.server_url));
+        // 加载内置的登录首屏（assets 内），登录/进会再跳 https 服务器；断网也能秒显外壳
+        webView.loadUrl("file:///android_asset/mirotalk/views/login.html");
 
         // 申请系统运行时权限（Android 6+），并让 WebView 可接收遥控器方向键
         requestMeetPermissions();
