@@ -56,8 +56,10 @@ public class MainActivity extends Activity {
         ws.setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);
         ws.setBuiltInZoomControls(false);
         ws.setDisplayZoomControls(false);
-        ws.setUseWideViewPort(true);
-        ws.setLoadWithOverviewMode(true);
+        ws.setSupportZoom(false);
+        // 电视适配：按 WebView 真实像素宽度渲染，禁用 overview 等比缩放，避免四周被裁剪
+        ws.setUseWideViewPort(false);
+        ws.setLoadWithOverviewMode(false);
 
         // 页面内链接仍在 WebView 打开
         webView.setWebViewClient(new WebViewClient());

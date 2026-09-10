@@ -417,6 +417,35 @@
         margin: 0;
     }
 }
+/* TV / large screen: bigger card and fonts so it doesn't look tiny on 1080p TV */
+@media (min-width: 1280px) {
+    .login-card {
+        max-width: 760px;
+        padding: 64px 72px;
+    }
+    .login-title,
+    .join-room-title {
+        font-size: 34px;
+    }
+    .login-description {
+        font-size: 18px;
+    }
+    .login-input-group .form-input {
+        font-size: 18px;
+    }
+    .login-btn,
+    .join-room-btn {
+        padding: 20px;
+        font-size: 20px;
+    }
+    .login-icon {
+        width: 86px;
+        height: 86px;
+    }
+    .login-icon i {
+        font-size: 36px;
+    }
+}
 @media (max-width: 640px) {
     .login-card {
         margin: 0 16px;

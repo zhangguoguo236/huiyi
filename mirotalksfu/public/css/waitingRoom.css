@@ -12,9 +12,9 @@
 .center-card-section .hero-figure {
     display: none;
 }
-@media (min-width: 1025px) {
+@media (min-width: 1280px) {
     .center-card-section .hero-figure {
-        display: block;
+        display: none;
     }
 }
 
@@ -247,6 +247,35 @@
 @media (min-width: 1025px) {
     .waiting-card {
         margin: 0;
+    }
+}
+/* TV / large screen: bigger card and fonts */
+@media (min-width: 1280px) {
+    .waiting-card {
+        max-width: 760px;
+        padding: 64px 72px;
+    }
+    .waiting-title {
+        font-size: 34px;
+    }
+    .waiting-description {
+        font-size: 18px;
+    }
+    .waiting-status {
+        font-size: 17px;
+    }
+    .waiting-elapsed {
+        font-size: 16px;
+    }
+    .host-login-link {
+        font-size: 17px;
+    }
+    .waiting-icon {
+        width: 86px;
+        height: 86px;
+    }
+    .waiting-icon i {
+        font-size: 36px;
     }
 }
 @media (max-width: 640px) {
